@@ -1,0 +1,1139 @@
+<html>
+  <head>
+    <title>The Amazing Mandolin Demystifier</title>
+    <META NAME="Description" CONTENT="Decode chords, scales, and notes on the mysterious mandolin fretboard.">
+    <META NAME="Keywords" CONTENT="mandolin music chord scale note major minor fret electric acoustic free">    
+    <style type="text/css">
+      A.searchengine
+      {
+        display:none;
+      };
+
+      body
+      {
+        font-family:sans-serif;
+      };
+      
+      td
+      {
+        margin:0;
+        padding:0;
+      };
+      
+      td.fret0
+      {
+        border-bottom: 0.1cm solid black;
+        text-align:right;
+        vertical-align:text-bottom;
+      };
+      
+      td.leftfret0
+      {
+        text-align:right;
+        vertical-align:text-bottom;
+        height:0.30in;
+        padding-bottom: 0.1cm;
+      };
+      
+      td.leftfret
+      {
+        border-right: 0.02cm solid black; 
+        padding-bottom: 0.02cm;
+        text-align:right;
+        vertical-align:text-bottom;
+        height:0.30in;
+      };
+      
+      td.fret
+      {
+        border-right: 0.02cm solid black;      
+        border-bottom: 0.05cm solid black;
+        text-align:right;
+        vertical-align:text-bottom;
+        background-color:beige;
+      };
+      
+      td.leftfret1to2
+      {
+        border-right: 0.02cm solid black; 
+        padding-bottom: 0.02cm;
+        text-align:right;
+        vertical-align:text-bottom;
+        height:0.30in;
+      };
+
+      td.fret1to2
+      {
+        border-right: 0.02cm solid black;      
+        border-bottom: 0.02cm solid silver;
+        text-align:right;
+        vertical-align:text-bottom;
+        background-color:beige;
+      };
+
+
+      td.leftfret2
+      {
+        border-right: 0.02cm solid silver; 
+        padding-bottom: 0.02cm;
+        text-align:right;
+        vertical-align:text-bottom;
+        height:0.30in;
+      };
+      
+      td.fret2
+      {
+        border-right: 0.02cm solid silver;      
+        border-bottom: 0.02cm solid silver;
+        text-align:right;
+        vertical-align:text-bottom;
+        background-color:beige;
+      };
+      
+      td.leftfret3
+      {
+        border-right: 0.02cm solid silver; 
+        text-align:right;
+        vertical-align:text-bottom;
+        height:0.10in;
+      };
+
+      td.donotwrap
+      { 
+        white-space:nowrap;
+        vertical-align:text-top;
+      };
+    </style>
+    
+    <script type="text/javascript">
+      /**
+       * Data definitions.
+       */
+      
+        var degreeNumbers = ["&nbsp;1", "-2", "&nbsp;2", "-3", "&nbsp;3", "&nbsp;4", "-5", "&nbsp;5", "-6", "&nbsp;6", "-7", "&nbsp;7"];
+        
+        var degreeNames = ["&nbsp;1<sup>st</sup>",
+                           "-2<sup>nd</sup>",
+                           "&nbsp;2<sup>nd</sup>",
+                           "-3<sup>rd</sup>",
+                           "&nbsp;3<sup>rd</sup>",
+                           "&nbsp;4<sup>th</sup>",
+                           "-5<sup>th</sup>",
+                           "&nbsp;5<sup>th</sup>",
+                           "-6<sup>th</sup>",
+                           "&nbsp;6<sup>th</sup>",
+                           "-7<sup>th</sup>",
+                           "&nbsp;7<sup>th</sup>"];
+                           
+        var degreeDescs = ["Tonic",
+                           "&nbsp;",
+                           "Supertonic",
+                           "&nbsp;",
+                           "Mediant",
+                           "Subdominant",
+                           "&nbsp;",
+                           "Dominant",
+                           "&nbsp;",
+                           "Superdominant",
+                           "&nbsp;",
+                           "Leading Tone"];
+        
+        /**
+         * Sadly, IE does not appear to support more than one shade of gray for printing text, no
+         * matter how the text looks on the screen.  Black or gray - that is all you get.
+         * Moreover, the gray is just barely gray.  So, to bring out the fact that black is
+         * different from gray, I had to also bold the black and unbold the gray text.
+         * It looks great when you print it, but we do not have the capability to add 
+         * additional shades of gray.
+         */
+        var degreeTextColors = [
+                                 ["Black", "black"],
+                                 ["Gray", "silver"]
+                               ];
+        
+                           
+        var strings = ["G4","D3","A2","E1"];
+        var frets = [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21];
+        
+        var notes = ["C",
+                     "&nbsp;",
+                     "D",
+                     "&nbsp;",
+                     "E",
+                     "F",
+                     "&nbsp;",
+                     "G",
+                     "&nbsp;",
+                     "A",
+                     "&nbsp;",
+                     "B"]; 
+                     
+        var fullnotes = ["C",
+                         "C<sup>#</sup>/D<sub>b</sub>",
+                         "D",
+                         "D<sup>#</sup>/E<sub>b</sub>",
+                         "E",
+                         "F",
+                         "F<sup>#</sup>/G<sub>b</sub>",
+                         "G",
+                         "G<sup>#</sup>/A<sub>b</sub>",
+                         "A",
+                         "A<sup>#</sup>/B<sub>b</sub>",
+                         "B"];
+      
+        var notesIndex = [7,2,9,4];
+      
+        var degreeColors = ["red", 
+                            "lightcoral", 
+                            "darkorange", 
+                            "gold", 
+                            "yellow", 
+                            "limegreen", 
+                            "turquoise", 
+                            "deepskyblue", 
+                            "mediumpurple", 
+                            "purple", 
+                            "plum", 
+                            "palevioletred"];
+        
+        var rootNoteMap = [
+                            ["rootA",      9],
+                            ["rootBflat", 10],
+                            ["rootB",     11],
+                            ["rootC",      0],
+                            ["rootDflat",  1],
+                            ["rootD",      2],
+                            ["rootEflat",  3],
+                            ["rootE",      4],
+                            ["rootF",      5],
+                            ["rootGflat",  6],
+                            ["rootG",      7],
+                            ["rootAflat",  8]
+                          ]; 
+      
+    </script>
+  </head>
+  
+  <body background="../images/mandolin-background.jpg">
+    <!--
+      The following links are not shown in the web page.  They correspond to javascript links
+      that a search engine might not be able to follow. 
+    -->
+    <a class="searchengine" href="demystifier/chords.html">chords</a>
+    <a class="searchengine" href="demystifier/scales.html">scales</a>
+    <a class="searchengine" href="demystifier/introduction.html">introduction</a>
+    <a class="searchengine" href="demystifier/recommended.html">recommended</a>
+    
+    <center>
+      <table border=0>
+        <tr id="tableelement1">
+          <td colspan="6" width="1%">
+            <center>
+            <big><big><b>The Amazing Mandolin Demystifier</b></big></big><br/>
+            <small>Where music theory meets the mandolin.</small><br/>
+            <script type="text/javascript">
+              <!--
+              amazon_ad_tag = "lilypeppercom-20";  
+              amazon_ad_width = "728";  
+              amazon_ad_height = "90";  
+              amazon_ad_include = "mandolin;electric;acoustic;music";  
+              amazon_ad_categories = "ab";
+              //-->
+            </script>
+            <script type="text/javascript" src="http://www.assoc-amazon.com/s/ads.js"></script>
+            <br/>
+            <small>
+            <a href="guitar-demystifier.html" title="The Amazing Guitar Demystifier">Guitar</a> |
+            <a href="#" onclick="openWindow('introduction.html', 'introduction')" title="Introduction, help, and FAQ.  Start here.">Introduction/FAQ</a> |
+            <a href="#" onclick="openWindow('chords.html', 'chords')" title="All you need to create your favorite chords!">Chord Reference</a> |
+            <a href="#" onclick="openWindow('scales.html', 'scales')" title="All you need to create your favorite scales!">Scales Reference</a> | 
+            <a href="#" onclick="openWindow('recommended.html', 'recommended')" title="Books, videos, and other stuff we recommend - and own. No junk here!">Recommended Books and Stuff</a> | 
+            <a href="mailto:webmaster@lilypepper.com" id="contactanchor" title="Send us your comments.">Email Us</a> | 
+            <a href="#" onclick="window.print()" title="Print the fretboard diagram.">Print Me!</a>
+            </small>
+            <br/><br/>
+            </center>
+            <!-- <p>
+              Use this handy-dandy utility to make up new chords or learn scale patterns on a guitar.
+            </p>
+            <p>
+              Pick a root note (this defines the "key" of the scale), and then enter the scale degrees 
+              for the chord or scale you want to see.  You can turn chromatic coloring and fixed-note
+              display on or off.  You can also add a title and sub-title, which is great if you want to 
+              print the result.  Before you print, check "Format for Printing" to get rid of all the 
+              extra clutter.
+            </p>
+            <p>
+              Enjoy!  
+            </p>
+            <br/> -->
+          </td>
+        </tr>
+        <tr>
+          <td valign="top" id="tableelement2">
+            <table>
+              <tr>
+                <th style="white-space:nowrap">Root Note</th>
+              </tr>
+              <tr>
+                <td>
+                  <input type=radio name="root" id="rootA" onclick="calcScaleDegrees()"/>A
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <input type=radio name="root" id="rootBflat" onclick="calcScaleDegrees()"/>A<sup>#</sup>/B<sub>b</sub>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <input type=radio name="root" id="rootB" onclick="calcScaleDegrees()"/>B
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <input type=radio name="root" id="rootC" onclick="calcScaleDegrees()"/>C
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <input type=radio name="root" id="rootDflat" onclick="calcScaleDegrees()"/>C<sup>#</sup>/D<sub>b</sub>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <input type=radio name="root" id="rootD" onclick="calcScaleDegrees()"/>D
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <input type=radio name="root" id="rootEflat" onclick="calcScaleDegrees()"/>D<sup>#</sup>/E<sub>b</sub>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <input type=radio name="root" id="rootE" onclick="calcScaleDegrees()" checked/>E
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <input type=radio name="root" id="rootF" onclick="calcScaleDegrees()"/>F
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <input type=radio name="root" id="rootGflat" onclick="calcScaleDegrees()"/>F<sup>#</sup>/G<sub>b</sub>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <input type=radio name="root" id="rootG" onclick="calcScaleDegrees()"/>G
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <input type=radio name="root" id="rootAflat" onclick="calcScaleDegrees()"/>G<sup>#</sup>/A<sub>b</sub>
+                </td>
+              </tr>
+            </table>  
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <img alt="Best viewed with Internet Explorer" src="../images/ie7_logo.gif" />
+          </td>
+          
+          <td width="1%" id="tableelement3" style="border-left:solid black">&nbsp;</td>
+          
+          <td valign="top" id="tableelement4">
+            <center>
+              <table border=0>
+                <tr>
+                  <th colspan="6">Scale Degrees<br/><small>Based on the Major Scale</small></th>
+                </tr>
+                <tr>
+                  <td>
+                    <script type="text/javascript">
+                      /**
+                       * Generate the complex scale-degree selection table, which allows you to select
+                       * the scale-degrees, a gray color for the text (for printing), and also shows you
+                       * various things about each scale degree.
+                       */
+                      document.write("<table border=0 cellpadding=2 cellspacing=4>");
+                      
+                      document.write("<tr>");
+                      document.write("<th style='white-space:nowrap'>Degree(s)</th>");
+                      document.write("<th>Color</th>");
+                      document.write("<th>Relative Fret</th>");
+                      document.write("<th>&nbsp;</th>");
+                      document.write("<th style='white-space:nowrap'>Degree Name</th>");
+                      document.write("</tr>");
+                      
+                      for(var i=0; i<12; i++)
+                      {
+                        document.write("<tr>");
+                        
+                        document.write("<td width='1%' style='white-space:nowrap'>");
+                        document.write("<input type=checkbox id='scale" + i + "' onclick='calcScaleDegrees()'");
+                        if(i == 0 || i == 4  || i == 7)
+                        {
+                          document.write(" checked");
+                        }
+                        document.write(">");
+                        document.write(degreeNames[i]);
+                        document.write("</td>");
+                        
+                        document.write("<td>");
+                        document.write("<select id='degreetextcolor" + i + "' onchange='calcScaleDegrees()'>");
+                        for(var j=0; j<degreeTextColors.length; j++)
+                        {
+                          var thisColor = degreeTextColors[j];
+                          document.write("<option value='" + thisColor[1] + "'>");
+                          document.write(thisColor[0]);
+                          document.write("</option>");
+                        }
+                        document.write("</select>");
+                        document.write("</td>");
+                        
+                        document.write("<td style='white-space:nowrap'>");
+                        if(i == 0)
+                        {
+                          document.write("&nbsp;");
+                        }
+                        else
+                        {
+                          document.write("(" + i + " up, " + (12 - i) + " down)");
+                        }
+                        document.write("</td>");
+                        
+                        document.write("<td><span id='scalecolor" + i + "'>");
+                        document.write("&nbsp;&nbsp;&nbsp;");
+                        document.write("</span></td>");
+                        
+                        document.write("<td>");
+                        document.write(degreeDescs[i]);
+                        document.write("</td>");
+                        
+                        document.write("</tr>");
+                      }
+                      
+                      document.write("</table>");
+                      
+                    </script>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <button width="200" title="Shift the whole scale-degree pattern up one position." onclick="shiftDegreesUp()">&nbsp;<img src="../images/uparrow.gif" alt"Up" style="height:0.25in"/>&nbsp;</button>
+                    <button width="200" title="Shift the whole scale-degree pattern down one position." onclick="shiftDegreesDown()">&nbsp;<img src="../images/downarrow.gif" alt"Down" style="height:0.25in"/>&nbsp;</button>
+                  </td>
+                </tr>
+              </table>
+              <table>
+                <tr>
+                  <th>Options</th>
+                </tr>
+                <tr>
+                  <td style="white-space:nowrap">
+                    <input type=checkbox id="showcolors" onclick="calcScaleDegrees()" checked/>Show Colors
+                  </td>
+                </tr>
+                <tr>
+                  <td style="white-space:nowrap">
+                    <input type=checkbox id="shownotes" onclick="calcScaleDegrees()" checked/>Show Notes
+                  </td>
+                </tr>
+                <tr>
+                  <td>Title:</td>
+                </tr>
+                <tr>
+                  <td>
+                    <input 
+                      type=text 
+                      id="titleinput" 
+                      onkeyup="updateTitles()" 
+                      value="***Enter Title Here***" 
+                      title="The title of the diagram (mainly for printing)."/>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Sub-Title:</td>
+                </tr>
+                <tr>
+                  <td>
+                    <input 
+                      type=text 
+                      id="subtitleinput" 
+                      onkeyup="updateTitles()" 
+                      value="*** enter sub-title here ***"
+                      title="The subtitle of the diagram (mainly for printing)."/>
+                  </td>
+                </tr>
+              </table>
+            </center>
+          </td>
+          
+          <td width="1%" id="tableelement5" style="border-left:solid black">&nbsp;</td>
+          
+          <td>
+            <table border=0>
+              <tr>
+                <th colspan=2><big><b><span id="titledisplay"></span></b></big></th>
+              </tr>
+              <tr>
+                <th colspan=2>in the key of <span id="keynote"></span></th>
+              </tr>
+              <tr>
+                <th colspan=2><small><span id="subtitledisplay"></span></small></th>
+              </tr>
+              <tr>
+                <td colspan=2>&nbsp;</td>
+              </tr>
+              <tr>
+                <td valign="top">
+                  <table border=0 cellpadding=0 cellspacing=0 style="font-family:monospace">
+                    <tr style="font-family:sans-serif">
+                      <th colspan=6>
+                        Fret Board
+                      </th>
+                      <th width="1%">&nbsp;</th>
+                      <th>
+                        Fret #
+                      </th>
+                    </tr>
+                    <tr id="FRET0">
+                      <td id="G4_0" class="leftfret0" width="30">
+                      </td>
+                      <td id="D3_0" class="fret0" width="30">
+                      </td>
+                      <td id="A2_0" class="fret0" width="30">
+                      </td>
+                      <td id="E1_0" class="fret0" width="30">
+                      </td>
+                      <td>&nbsp;</td>
+                      <td width=100 align="center" valign="center">0</td>
+                    </tr>
+                    <tr id="FRET1">
+                      <td id="G4_1" class="leftfret">
+                      </td>
+                      <td id="D3_1" class="fret">
+                      </td>
+                      <td id="A2_1" class="fret">
+                      </td>
+                      <td id="E1_1" class="fret">
+                      </td>
+                      <td>&nbsp;</td>
+                      <td width=100 align="center" valign="center">1</td>
+                    </tr>
+                    <tr id="FRET2">
+                      <td id="G4_2" class="leftfret">
+                      </td>
+                      <td id="D3_2" class="fret">
+                      </td>
+                      <td id="A2_2" class="fret">
+                      </td>
+                      <td id="E1_2" class="fret">
+                      </td>
+                      <td>&nbsp;</td>
+                      <td width=100 align="center" valign="center">2</td>
+                    </tr>
+                    <tr id="FRET3">
+                      <td id="G4_3" class="leftfret">
+                      </td>
+                      <td id="D3_3" class="fret">
+                      </td>
+                      <td id="A2_3" class="fret">
+                      </td>
+                      <td id="E1_3" class="fret">
+                      </td>
+                      <td>&bull;</td>
+                      <td width=100 align="center" valign="center">3</td>
+                    </tr>
+                    <tr id="FRET4">
+                      <td id="G4_4" class="leftfret">
+                      </td>
+                      <td id="D3_4" class="fret">
+                      </td>
+                      <td id="A2_4" class="fret">
+                      </td>
+                      <td id="E1_4" class="fret">
+                      </td>
+                      <td>&nbsp;</td>
+                      <td width=100 align="center" valign="center">4</td>
+                    </tr>
+                    <tr id="FRET5">
+                      <td id="G4_5" class="leftfret">
+                      </td>
+                      <td id="D3_5" class="fret">
+                      </td>
+                      <td id="A2_5" class="fret">
+                      </td>
+                      <td id="E1_5" class="fret">
+                      </td>
+                      <td>&bull;</td>
+                      <td width=100 align="center" valign="center">5</td>
+                    </tr>
+                    <tr id="FRET6">
+                      <td id="G4_6" class="leftfret">
+                      </td>
+                      <td id="D3_6" class="fret">
+                      </td>
+                      <td id="A2_6" class="fret">
+                      </td>
+                      <td id="E1_6" class="fret">
+                      </td>
+                      <td>&nbsp;</td>
+                      <td width=100 align="center" valign="center">6</td>
+                    </tr>
+                    <tr id="FRET7">
+                      <td id="G4_7" class="leftfret">
+                      </td>
+                      <td id="D3_7" class="fret">
+                      </td>
+                      <td id="A2_7" class="fret">
+                      </td>
+                      <td id="E1_7" class="fret">
+                      </td>
+                      <td>&bull;</td>
+                      <td width=100 align="center" valign="center">7</td>
+                    </tr>
+                    <tr id="FRET8">
+                      <td id="G4_8" class="leftfret">
+                      </td>
+                      <td id="D3_8" class="fret">
+                      </td>
+                      <td id="A2_8" class="fret">
+                      </td>
+                      <td id="E1_8" class="fret">
+                      </td>
+                      <td>&nbsp;</td>
+                      <td width=100 align="center" valign="center">8</td>
+                    </tr>
+                    <tr id="FRET9">
+                      <td id="G4_9" class="leftfret">
+                      </td>
+                      <td id="D3_9" class="fret">
+                      </td>
+                      <td id="A2_9" class="fret">
+                      </td>
+                      <td id="E1_9" class="fret">
+                      </td>
+                      <td>&bull;</td>
+                      <td width=100 align="center" valign="center">9</td>
+                    </tr>
+                    <tr id="FRET10">
+                      <td id="G4_10" class="leftfret">
+                      </td>
+                      <td id="D3_10" class="fret">
+                      </td>
+                      <td id="A2_10" class="fret">
+                      </td>
+                      <td id="E1_10" class="fret">
+                      </td>
+                      <td>&nbsp;</td>
+                      <td width=100 align="center" valign="center">10</td>
+                    </tr>
+                    <tr id="FRET11">
+                      <td id="G4_11" class="leftfret">
+                      </td>
+                      <td id="D3_11" class="fret">
+                      </td>
+                      <td id="A2_11" class="fret">
+                      </td>
+                      <td id="E1_11" class="fret">
+                      </td>
+                      <td>&nbsp;</td>
+                      <td width=100 align="center" valign="center">11</td>
+                    </tr>
+                    <tr id="FRET12">
+                      <td id="G4_12" class="leftfret1to2">
+                      </td>
+                      <td id="D3_12" class="fret1to2">
+                      </td>
+                      <td id="A2_12" class="fret1to2">
+                      </td>
+                      <td id="E1_12" class="fret1to2">
+                      </td>
+                      <td>&bull;&bull;</td>
+                      <td width=100 align="center" valign="center">12</td>
+                    </tr>
+                    <tr id="FRET13">
+                      <td id="G4_13" class="leftfret2">
+                      </td>
+                      <td id="D3_13" class="fret2">
+                      </td>
+                      <td id="A2_13" class="fret2">
+                      </td>
+                      <td id="E1_13" class="fret2">
+                      </td>
+                      <td>&nbsp;</td>
+                      <td width=100 align="center" valign="center">13</td>
+                    </tr>
+                    <tr id="FRET14">
+                      <td id="G4_14" class="leftfret2">
+                      </td>
+                      <td id="D3_14" class="fret2">
+                      </td>
+                      <td id="A2_14" class="fret2">
+                      </td>
+                      <td id="E1_14" class="fret2">
+                      </td>
+                      <td>&nbsp;</td>
+                      <td width=100 align="center" valign="center">14</td>
+                    </tr>
+                    <tr id="FRET15">
+                      <td id="G4_15" class="leftfret2">
+                      </td>
+                      <td id="D3_15" class="fret2">
+                      </td>
+                      <td id="A2_15" class="fret2">
+                      </td>
+                      <td id="E1_15" class="fret2">
+                      </td>
+                      </td>
+                      <td>&bull;</td>
+                      <td width=100 align="center" valign="center">15</td>
+                    </tr>
+                    <tr id="FRET16">
+                      <td id="G4_16" class="leftfret2">
+                      </td>
+                      <td id="D3_16" class="fret2">
+                      </td>
+                      <td id="A2_16" class="fret2">
+                      </td>
+                      <td id="E1_16" class="fret2">
+                      </td>
+                      <td>&nbsp;</td>
+                      <td width=100 align="center" valign="center">16</td>
+                    </tr>
+                    <tr id="FRET17">
+                      <td id="G4_17" class="leftfret2">
+                      </td>
+                      <td id="D3_17" class="fret2">
+                      </td>
+                      <td id="A2_17" class="fret2">
+                      </td>
+                      <td id="E1_17" class="fret2">
+                      </td>
+                      <td>&bull;</td>
+                      <td width=100 align="center" valign="center">17</td>
+                    </tr>
+                    <tr id="FRET18">
+                      <td id="G4_18" class="leftfret2">
+                      </td>
+                      <td id="D3_18" class="fret2">
+                      </td>
+                      <td id="A2_18" class="fret2">
+                      </td>
+                      <td id="E1_18" class="fret2">
+                      </td>
+                      <td>&nbsp;</td>
+                      <td width=100 align="center" valign="center">18</td>
+                    </tr>
+                    <tr id="FRET19">
+                      <td id="G4_19" class="leftfret2">
+                      </td>
+                      <td id="D3_19" class="fret2">
+                      </td>
+                      <td id="A2_19" class="fret2">
+                      </td>
+                      <td id="E1_19" class="fret2">
+                      </td>
+                      <td>&bull;</td>
+                      <td width=100 align="center" valign="center">19</td>
+                    </tr>
+                    <tr id="FRET20">
+                      <td id="G4_20" class="leftfret2">
+                      </td>
+                      <td id="D3_20" class="fret2">
+                      </td>
+                      <td id="A2_20" class="fret2">
+                      </td>
+                      <td id="E1_20" class="fret2">
+                      </td>
+                      <td>&nbsp;</td>
+                      <td width=100 align="center" valign="center">20</td>
+                    </tr>
+                    <tr id="FRET21">
+                      <td id="G4_21" class="leftfret2">
+                      </td>
+                      <td id="D3_21" class="fret2">
+                      </td>
+                      <td id="A2_21" class="fret2">
+                      </td>
+                      <td id="E1_21" class="fret2">
+                      </td>
+                      <td>&bull;</td>
+                      <td width=100 align="center" valign="center">21</td>
+                    </tr>
+                    <tr id="FRET22">
+                      <td id="G4_22" class="leftfret2">
+                      </td>
+                      <td id="D3_22" class="fret2">
+                      </td>
+                      <td id="A2_22" class="fret2">
+                      </td>
+                      <td id="E1_22" class="fret2">
+                      </td>
+                      <td>&nbsp;</td>
+                      <td width=100 align="center" valign="center">22</td>
+                    </tr>
+                    <tr style="font-size:1pt">
+                      <!--
+                        This is a short row, as defined by the style.  If the font size is
+                        not altered, it actually determines the height of the row!
+                      -->
+                      <td class="leftfret3">&nbsp;</td>
+                      <td class="leftfret3" style="background-color:beige;">&nbsp;</td>
+                      <td class="leftfret3" style="background-color:beige;">&nbsp;</td>
+                      <td class="leftfret3" style="background-color:beige;">&nbsp;</td>
+                      <td>&nbsp;</td>
+                      <td width=100 align="right" valign="bottom"></td>
+                    </tr>
+                  </table>
+                </td>
+                <td valign="top">
+                  <table>
+                    <tr>
+                      <th>Scale</th>
+                    </tr>
+                    <tr>
+                      <td>
+                        <center><span id="scaledisplay"></span></center>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>&nbsp;</td>
+                    </tr>
+                    <tr>
+                      <td style="white-space:nowrap"><small><small>9<sup>th</sup> is 2<sup>nd</sup> an octave higher.</small></small></td>
+                    </tr>
+                    <tr>
+                      <td style="white-space:nowrap"><small><small>11<sup>th</sup> is 4<sup>th</sup> an octave higher.</small></small></td>
+                    </tr>
+                    <tr>
+                      <td style="white-space:nowrap"><small><small>13<sup>th</sup> is 6<sup>th</sup> an octave higher.</small></small></td>
+                    </tr>
+                  </table>  
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+        <tr id="tableelement6">
+          <td colspan="6">
+  
+          </td>
+        </tr>
+        <tr>
+          <td colspan=6>
+            <br/>
+            <center>
+              <small>The Amazing Mandolin Demystifier<br/>
+              <small><a href="http://www.lilypepper.com">http://www.lilypepper.com</a><br/>
+              Copyright &copy; 2007 by Jason Smith, all rights reserved.</small></small>
+            </center>
+          </td>
+        </tr>
+      </table>
+    </center>
+  </body>
+</html>
+
+<script type="text/javascript">
+/**
+ * Functions.
+ */
+  
+  function /*boolean-false*/ openWindow(/*String*/ url, /*String*/ name)
+  {
+    window.open(url, name, "directories=no,location=no,menubar=no,titlebar=no,toolbar=no,resizable=yes,height=600,width=800,scrollbars=yes");
+    return false;
+  }
+  
+  function /*void*/ updateTitles()
+  {
+    var titleIn = document.getElementById("titleinput");
+    var subtitleIn = document.getElementById("subtitleinput");
+    var titleDisp = document.getElementById("titledisplay");
+    var subtitleDisp = document.getElementById("subtitledisplay");
+    
+    titleDisp.innerText = titleIn.value;
+    subtitleDisp.innerText = subtitleIn.value;
+  }
+  
+
+  function /*void*/ formatForPrint(/*boolean*/ hideAll)
+  {
+    var display = "";
+    if(hideAll)
+    {
+      display = "none";
+    }
+    
+    document.getElementById("tableelement1").style.display=display;
+    document.getElementById("tableelement2").style.display=display;
+    document.getElementById("tableelement3").style.display=display;
+    document.getElementById("tableelement4").style.display=display;
+    document.getElementById("tableelement5").style.display=display;
+    document.getElementById("tableelement6").style.display=display;
+  }
+  
+
+  var dontCalc = false;
+  
+  function /*void*/ calcScaleDegrees()
+  {
+    if(dontCalc)
+    {
+      return;
+    }
+    
+    function /*void*/ setScaleDisplay(/*int*/ rootNote, /*boolean[12]*/ degrees)
+    {
+      var scaleDisplay = document.getElementById("scaledisplay");
+      var result = "";
+      
+      for(var i=0; i<degrees.length; i++)
+      {
+        if(degrees[i] == true)
+        {
+          var note = (i + rootNote + 12) % 12;
+          result += "<tr><td>" + degreeNumbers[i] + "</td><td>" + fullnotes[note] + "</td></tr>";
+        }
+      }
+      
+      scaleDisplay.innerHTML = "<table><tr><th>Degree</th><th>Note</th></tr>" + result + "</table>";
+    }
+
+    var showcolors = (document.getElementById("showcolors").checked == true);
+    var shownotes = (document.getElementById("shownotes").checked == true);
+    
+    var rootNote = 0;
+    for(var i=0; i<rootNoteMap.length; i++)
+    {
+      var rootElement = document.getElementById(rootNoteMap[i][0]);
+      if(rootElement.checked)
+      {
+        rootNote = rootNoteMap[i][1];
+      }
+    }
+    
+    var degrees = getScale();
+        
+    setScaleDisplay(rootNote, degrees);
+    
+    var keydisplay = document.getElementById("keynote");
+    keydisplay.innerHTML = fullnotes[rootNote];
+  
+    for(var i=0; i<degreeColors.length; i++)
+    {
+      document.getElementById("scalecolor" + i).style.backgroundColor = degreeColors[i];
+    }
+    
+    var degreeTextColors = getDegreeTextColors();
+    
+    for(var i = 0; i<strings.length; i++)
+    {
+      var string = strings[i];
+      var noteIndex = notesIndex[i];
+      
+      for(var j = 0 ; j<frets.length; j++)
+      {
+        var fret = frets[j];
+        var cell = document.getElementById(string + "_" + fret);
+        
+        var degreeDesc = "";
+        
+        var degreeIndex = (noteIndex + fret + 12 - rootNote) % 12;
+        var style = "white-space:nowrap;";
+        if(degrees[degreeIndex] == true)
+        {
+          if(showcolors)
+          {
+            style+="background-color:" + degreeColors[degreeIndex] + ";";
+          }
+          else
+          {
+            //style+="background-color:#CDAA7D;";
+            style+="background-color:;"
+          }
+          degreeDesc = "<span style='color:" + degreeTextColors[degreeIndex] + ";'>" + degreeNumbers[degreeIndex] + "</span>";
+          if(degreeTextColors[degreeIndex] == "black")
+          {
+            degreeDesc = "<b>" + degreeDesc + "</b>";
+          }
+        }
+        
+        var note = "";
+        if(shownotes)
+        {
+          note = "<small><small>" + notes[(noteIndex + fret) % 12] + "</small></small>";
+        }
+        
+        var celltext = degreeDesc + note;
+        if(celltext.length == 0)
+        {
+          celltext = "&nbsp;";
+        }
+        
+        if(degreeDesc.length == 0)
+        {
+          celltext = "<i>" + celltext + "</i>";
+        }
+        
+        cell.innerHTML = "<span style='" + style + "'>" + celltext + "</span>";
+      }
+    }
+  }
+  
+  function /*boolean[12]*/ getScale()
+  {
+    var results = new Array();
+    for(var i=0; i<12; i++)
+    {
+      var elt = document.getElementById("scale" + i);
+      results[i] = elt.checked;
+    }
+    return results;
+  }
+  
+  function /*void */ setScale(/*boolean[12]*/ scale)
+  {
+    for(var i=0; i<12; i++)
+    {
+      var elt = document.getElementById("scale" + i);
+      elt.checked = scale[i];
+    }
+  }
+  
+  function /*String[12]*/ getDegreeTextColors()
+  {
+    var results = new Array();
+    for(var i=0; i<12; i++)
+    {
+      var elt = document.getElementById("degreetextcolor" + i);
+      results[i] = elt.value;
+    }
+    return results;
+  }
+  
+  function /*void*/ setDegreeTextColors(/*String[12]*/ textColors)
+  {
+    for(var i=0; i<12; i++)
+    {
+      var elt = document.getElementById("degreetextcolor" + i);
+      elt.value = textColors[i];
+    }
+  }
+  
+  function /*void*/ shiftDegreesUp()
+  {
+    dontCalc = true;
+    try
+    {
+      var scale = getScale();
+      var textColors = getDegreeTextColors();
+      
+      var first = scale[0];
+      var firstColor = textColors[0];
+      
+      for(var i=0; i<11; i++)
+      {
+        scale[i] = scale[i+1];
+        textColors[i] = textColors[i+1];
+      }  
+      
+      scale[11] = first;
+      textColors[11] = firstColor;
+      
+      setScale(scale);
+      setDegreeTextColors(textColors);
+    }
+    finally
+    {
+      dontCalc = false;
+    }
+    calcScaleDegrees();
+  }
+  
+  function /*void*/ shiftDegreesDown()
+  {
+    dontCalc = true;
+    try
+    {
+      var scale = getScale();
+      var textColors = getDegreeTextColors();
+      
+      var last = scale[11];
+      var lastColor = textColors[11];
+      
+      for(var i=11; i>0; i--)
+      {
+        scale[i] = scale[i-1];
+        textColors[i] = textColors[i-1];
+      }
+      
+      scale[0] = last;
+      textColors[0] = lastColor;
+      
+      setScale(scale);
+      setDegreeTextColors(textColors);
+    }
+    finally
+    {
+      dontCalc = false;
+    }
+    calcScaleDegrees();
+  }
+
+</script>
+
+<script type="text/javascript">
+  window.onbeforeprint = 
+    function()
+    {
+      formatForPrint(true);
+      return false;
+    };
+    
+  window.onafterprint = 
+    function()
+    {
+      formatForPrint(false);
+      return false;
+    };
+  
+  /**
+   * My homemade e.m.a.i.l obfuscator.
+   * The href in the anchor is a dummy, and the correct one does not get written in
+   * until the user mouses over the link.  That should take care of nosey spiders!
+   */
+  document.getElementById("contact" + "anchor").onmouseenter = function()
+  {
+    var contact = document.getElementById("contact" + "anchor");
+    
+    var m2 = "m" + "ailt" + "o:";
+    m2 += "j" + "ason";
+    m2 += "@";
+    m2 += "lilypepper.com";
+    m2 += "?s" + "ubjec";
+    m2 += "t=Feedback for The Amazing Guitar Demystifier";
+  
+    contact.href = m2;
+    contact.onmouseenter = function() {return false;};
+    
+    return false;
+  };
+</script>
+
+<script type="text/javascript">
+/**
+ * Things to run on startup (initialization).
+ */
+ 
+  updateTitles();
+  calcScaleDegrees();
+  
+
+</script>
